@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg" style="background: #f8f9fa;">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="images/logo.png" class="navbar-brand-image img-fluid" alt="Project Finder">
+            <span class="navbar-brand-text ms-3" >
+                Project Finder
+            </span>
+        </a>
+
+{#                        <div class="d-lg-none ms-auto me-3">#}
+{#                            <a class="btn custom-btn custom-border-btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Member Login</a>#}
+{#                        </div>#}
+
+{#                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">#}
+{#                            <span class="navbar-toggler-icon"></span>#}
+{#                        </button>#}
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-lg-auto mt-1">
+                <li class="nav-item">
+                    <a href="#section_1"><button class="btn btn-light">Home</button></a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#section_1"><button class="btn btn-light">Dashboard</button></a>
+                </li>
+
+
+                <li class="nav-item">
+                        <a class="btn" href="#" role="button">
+                            <img src="images1/logo.png" alt="Project Finder">
+                        </a>
+{#                    {% if request.identity_context_data.authenticated %}#}
+{#                        <a class="btn" href="#" role="button">#}
+{#                            <img src="images1/logo.png" alt="Project Finder">#}
+{#                        </a>#}
+{#                    {% else %}#}
+{#                        <a class="btn btn-light" href="#" role="button">Login</a>#}
+{#                        <h3>{{ request.identity_context_data.username }}</h3>#}
+{#                    {% endif %}#}
+                </li>
+                <li>
+                    <div class="nav-item dropdown ms-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                            <li><a class="dropdown-item" href="event-listing.html">Event Listing</a></li>
+
+                            <li><a class="dropdown-item" href="event-detail.html">Event Detail</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</nav>
