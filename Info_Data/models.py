@@ -43,7 +43,7 @@ class User(models.Model):
         return self.Name
     # Projects=models.ManyToManyField(Project,null=True)
     # Groups=models.ManyToManyRel(Group,null=True)
-
+#idfk
 
 class User_Tag(models.Model):
     Tag_id = models.ForeignKey(Tags, on_delete=models.CASCADE)
