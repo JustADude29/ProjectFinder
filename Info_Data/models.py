@@ -59,6 +59,7 @@ class Settings(models.Model):
 
 class Project(models.Model):
     Title = models.CharField(max_length=50)
+    Published_time=models.DateTimeField()
     Owner_id = models.ForeignKey(User, on_delete=models.CASCADE)
     Abstract = models.TextField()
     Getting_Started = models.TextField()
