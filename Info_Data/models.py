@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-
+from autoslug import AutoSlugField
 Project_Visibility = ['None', 'All', 'Owners_Of_Applied_Projects']
 Profile_Visibility = ['None', 'All', 'Owners_Of_Applied_Projects']
 Color_Theme = ['Light_Mode', 'Dark_Mode']
@@ -38,6 +38,7 @@ class User(models.Model):
     Department = models.CharField(max_length=50, null=False)
     Year = models.CharField(max_length=4, null=False)
     Miscellaneous = models.TextField(null=True, blank=True)
+    user_slug = AutoSlugField(populate_from ='E_mail', unique=True, null=True, default=None)
 
     def __str__(self):
         return self.Name
@@ -65,6 +66,7 @@ class Project(models.Model):
     Getting_Started = models.TextField()
     Completed_Status = models.BooleanField()
     Deadline = models.DateTimeField()
+    project_slug = AutoSlugField(populate_from='Title', unique=True, null=True, default=None)
 
     def __str__(self):
         return self.Title
