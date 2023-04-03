@@ -26,18 +26,19 @@
                 </li>
 
 
-                <li class="nav-item">
-                        <a class="btn" href={% url 'login_page' %} role="button">
+                <li class="nav-item m=5px">
+                    {% if user.is_authenticated %}
+                        <a class="btn" href={% url 'logout_page' %} role="button">
+                            <img src="images1/logo.png" alt="Logout">
+                        </a>
+                    {% else %}
+                        <a class="btn btn-light" href={% url 'login_page' %} role="button">
                             <img src="images1/logo.png" alt="Login">
                         </a>
-{#                    {% if request.identity_context_data.authenticated %}#}
-{#                        <a class="btn" href="#" role="button">#}
-{#                            <img src="images1/logo.png" alt="Project Finder">#}
-{#                        </a>#}
-{#                    {% else %}#}
-{#                        <a class="btn btn-light" href="#" role="button">Login</a>#}
-{#                        <h3>{{ request.identity_context_data.username }}</h3>#}
-{#                    {% endif %}#}
+                        <a class="btn btn-light" href={% url 'register_page' %} role="button">
+                            <img src="images1/logo.png" alt="Register">
+                        </a>
+                    {% endif %}
                 </li>
                 <li>
                     <div class="nav-item dropdown ms-1">
