@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
 Project_Visibility = ['None', 'All', 'Owners_Of_Applied_Projects']
 Profile_Visibility = ['None', 'All', 'Owners_Of_Applied_Projects']
@@ -30,20 +31,44 @@ class Tags(models.Model):
         return self.Name
 
 
-class User(models.Model):
+class UserManager(BaseUserManager):
+    def create_user(self, email, password, Name, Programme, Department, **extra_fields):
+        if not email:
+            raise ValueError("Email moost be dere")
+        email = self.normalize_email(email)
+        user = self.model(email=email, Name=Name, Programme=Programme, Department=Department, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password, Name, Programme, Department, **extra_fields):
+        extra_fields.setdefault('superUser', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_staff', True)
+        return self.create_user(email, password, Name, Programme, Department, **extra_fields)
+
+
+class User(AbstractBaseUser, PermissionsMixin, models.Model):
     Name = models.CharField(max_length=50, null=False)
-    E_mail = models.CharField(max_length=50, null=False)
+    email = models.EmailField(max_length=50, null=False, unique=True)
     GitHub_ID = models.CharField(max_length=50, null=True, blank=True)
     Programme = models.CharField(max_length=50, null=False)
     Department = models.CharField(max_length=50, null=False)
     Year = models.CharField(max_length=4, null=False)
     Miscellaneous = models.TextField(null=True, blank=True)
+    is_staff = models.BooleanField(default=False)
+    superUser = models.BooleanField(default=False)
+
+    objects = UserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['Name', 'Programme', 'Department']
 
     def __str__(self):
         return self.Name
     # Projects=models.ManyToManyField(Project,null=True)
     # Groups=models.ManyToManyRel(Group,null=True)
-#idf
+
 
 class User_Tag(models.Model):
     Tag_id = models.ForeignKey(Tags, on_delete=models.CASCADE)
